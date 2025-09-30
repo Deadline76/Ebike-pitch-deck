@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RideFlow - Investor Pitch Deck</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .deck-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .slide {
+            background: white;
+            border-radius: 20px;
+            padding: 60px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            animation: slideIn 0.6s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        /* Title Slide */
+        .title-slide {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            min-height: 700px;
+        }
+
+        .title-slide h1 {
+            font-size: 72px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .title-slide .tagline {
+            font-size: 28px;
+            font-weight: 300;
+            margin-bottom: 40px;
+            opacity: 0.95;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .title-slide .raise-amount {
+            display: inline-block;
+            padding: 15px 40px;
+            background: white;
+            color: #667eea;
+            border-radius: 50px;
+            font-size: 24px;
+            font-weight: 600;
+            margin-top: 20px;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Section Headers */
+        h2 {
+            font-size: 48px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 30px;
+            letter-spacing: -1px;
+        }
+
+        h3 {
+            font-size: 28px;
+            font-weight: 600;
+            color: #667eea;
+            margin: 30px 0 15px;
+        }
+
+        /* Problem Slide */
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .problem-card {
+            padding: 30px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .problem-number {
+            font-size: 48px;
+            font-weight: 800;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        /* Market Slide */
+        .market-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin: 40px 0;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border: 2px solid #e0e7ff;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            border-color: #667eea;
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+        }
+
+        .stat-number {
+            font-size: 56px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 18px;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        /* Solution Cards */
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .solution-card {
+            display: flex;
+            align-items: center;
+            padding: 25px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .solution-card:hover {
+            transform: translateX(10px);
+        }
+
+        .solution-icon {
+            font-size: 48px;
+            margin-right: 20px;
+        }
+
+        /* Business Model */
+        .revenue-flow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 40px 0;
+            padding: 40px;
+            background: linear-gradient(90deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 20px;
+        }
+
+        .flow-item {
+            text-align: center;
+            flex: 1;
+        }
+
+        .flow-arrow {
+            font-size: 36px;
+            color: #667eea;
+            margin: 0 20px;
+        }
+
+        /* Metrics Grid */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .metric-box {
+            padding: 30px;
+            background: white;
+            border-left: 5px solid #667eea;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .metric-value {
+            font-size: 36px;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .metric-label {
+            font-size: 16px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            margin: 40px 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 30px;
+            align-items: center;
+        }
+
+        .timeline-year {
+            width: 100px;
+            font-size: 24px;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .timeline-content {
+            flex: 1;
+            padding: 20px 30px;
+            background: linear-gradient(90deg, #f5f7fa 0%, transparent 100%);
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        /* Team Grid */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin: 40px 0;
+        }
+
+        .team-member {
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+
+        .member-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            color: white;
+        }
+
+        /* CTA Slide */
+        .cta-slide {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin: 40px 0;
+        }
+
+        .cta-item {
+            padding: 30px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .cta-value {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .slide {
+                padding: 40px 30px;
+            }
+            
+            h2 {
+                font-size: 36px;
+            }
+            
+            .problem-grid,
+            .solution-grid,
+            .metrics-grid,
+            .team-grid,
+            .cta-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .market-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .title-slide h1 {
+                font-size: 48px;
+            }
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: rgba(255,255,255,0.2);
+            z-index: 1000;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            width: 0;
+            transition: width 0.3s ease;
+        }
+
+        /* Accent Elements */
+        .highlight {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 15px;
+            background: #667eea;
+            color: white;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar">
+        <div class="progress-fill" id="progress"></div>
+    </div>
+
+    <div class="deck-container">
+        <!-- Slide 1: Title -->
+        <div class="slide title-slide">
+            <h1>RideFlow</h1>
+            <p class="tagline">Empowering Delivery Heroes with Premium E-Bikes</p>
+            <p style="font-size: 20px; margin: 30px 0; opacity: 0.9;">
+                The subscription e-bike service transforming last-mile delivery<br>
+                in emerging markets, starting with Tbilisi
+            </p>
+            <div class="raise-amount">Raising $850K Seed Round</div>
+        </div>
+
+        <!-- Slide 2: The Problem -->
+        <div class="slide">
+            <h2>The Hidden Cost Crisis for Delivery Riders</h2>
+            <p style="font-size: 20px; color: #666; margin-bottom: 30px;">
+                Riders don't realize they're losing $200+ monthly to invisible costs
+            </p>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <div class="problem-number">$1,500+</div>
+                    <strong>High Barrier to Entry</strong>
+                    <p style="margin-top: 10px;">Used scooter = 2 months' salary upfront<br>New e-bike = $1,500+ (if available)</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-number">$50/mo</div>
+                    <strong>Hidden Depreciation Drain</strong>
+                    <p style="margin-top: 10px;">Scooters die in 18-24 months - riders lose $1,000 in value</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-number">$70/mo</div>
+                    <strong>Downtime Income Loss</strong>
+                    <p style="margin-top: 10px;">2-3 days monthly breakdowns = lost earnings, unpaid bills</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-number">$234/mo</div>
+                    <strong>True Total Cost</strong>
+                    <p style="margin-top: 10px;">Operating + depreciation + downtime = financial disaster</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Market Opportunity -->
+        <div class="slide">
+            <h2>A Massive, Growing Market</h2>
+            <div class="market-stats">
+                <div class="stat-card">
+                    <div class="stat-number">12.5K</div>
+                    <div class="stat-label">Full-time Riders in Tbilisi</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">+8K</div>
+                    <div class="stat-label">Part-time & Seasonal Riders</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">35%</div>
+                    <div class="stat-label">Annual Market Growth</div>
+                </div>
+            </div>
+            
+            <div style="background: #f8f9ff; padding: 30px; border-radius: 15px; margin: 30px 0;">
+                <h3 style="margin-top: 0; color: #667eea;">Untapped Segment: Flexible Workers</h3>
+                <p style="font-size: 18px; line-height: 1.8;">
+                    <strong>Thousands of potential riders never enter the market</strong> because they can't justify buying a $1,000+ vehicle for:<br>
+                    • Students doing summer delivery work (2-3 months)<br>
+                    • People between jobs trying delivery temporarily<br>
+                    • Part-timers testing if delivery work suits them<br>
+                    <span style="font-weight: 600; color: #667eea;">→ Our model unlocks this entire segment with month-to-month flexibility</span>
+                </p>
+            </div>
+            
+            <div style="background: linear-gradient(90deg, #f5f7fa 0%, #c3cfe2 100%); padding: 30px; border-radius: 15px;">
+                <h3 style="margin-top: 0;">Regional Expansion Opportunity</h3>
+                <p style="font-size: 18px; line-height: 1.6;">
+                    <strong>250,000+ riders</strong> across Eastern Europe & Caucasus region<br>
+                    Similar economics in Albania, Romania, Bulgaria, and Armenia<br>
+                    <span class="highlight">Total Addressable Market: $270M annually</span>
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide 4: Model Validation -->
+        <div class="slide">
+            <h2>Proven Model, Untapped Market</h2>
+            
+            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 20px; margin-bottom: 30px;">
+                <h3 style="color: white; margin-top: 0; text-align: center;">Delivery E-bike Subscription Success Stories</h3>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; margin-top: 30px;">
+                    <div style="padding: 30px; background: rgba(255,255,255,0.1); border-radius: 15px;">
+                        <strong style="font-size: 24px;">Zoomo</strong>
+                        <p style="font-size: 16px; opacity: 0.9; margin-top: 5px;">Global Leader</p>
+                        <p style="margin-top: 15px; font-size: 15px; line-height: 1.8;">
+                        • <strong>$150M+ raised</strong>, valued at $400M+<br>
+                        • <strong>15,000+ delivery riders</strong> subscribed<br>
+                        • Operating in <strong>16 cities</strong> across US, UK, Australia<br>
+                        • <strong>$199-329/month</strong> pricing validated<br>
+                        • <strong>90% retention rate</strong> proves model stickiness<br>
+                        • Platform partnerships with Uber Eats, DoorDash
+                        </p>
+                    </div>
+                    <div style="padding: 30px; background: rgba(255,255,255,0.1); border-radius: 15px;">
+                        <strong style="font-size: 24px;">Vélyvélo</strong>
+                        <p style="font-size: 16px; opacity: 0.9; margin-top: 5px;">France</p>
+                        <p style="margin-top: 15px; font-size: 15px; line-height: 1.8;">
+                        • <strong>100% delivery rider focused</strong><br>
+                        • <strong>€149/month</strong> all-inclusive model<br>
+                        • <strong>1,000+ riders</strong> in Paris alone<br>
+                        • Expanding to Lyon, Marseille, Bordeaux<br>
+                        • <strong>4-hour replacement</strong> guarantee<br>
+                        • Proves model works in smaller markets
+                        </p>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 25px; padding-top: 25px; border-top: 1px solid rgba(255,255,255,0.3);">
+                    <p style="font-size: 20px; margin: 0;">
+                        <strong>Key Validation:</strong> Delivery riders globally pay $150-200/month for reliability & flexibility
+                    </p>
+                </div>
+            </div>
+            
+            <div style="background: #f8f9ff; padding: 30px; border-radius: 15px;">
+                <h3 style="margin-top: 0; color: #667eea; text-align: center;">Complete White Space in Tbilisi</h3>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 25px;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 48px;">🚫</div>
+                        <strong>Zero E-bike Subscriptions</strong>
+                        <p style="font-size: 14px; margin-top: 10px;">First mover advantage in Georgia</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 48px;">💰</div>
+                        <strong>Only $1,500+ Purchase</strong>
+                        <p style="font-size: 14px; margin-top: 10px;">No affordable entry options exist</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 48px;">⏰</div>
+                        <strong>18-Month Head Start</strong>
+                        <p style="font-size: 14px; margin-top: 10px;">Build moat before competition arrives</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Our Solution -->
+        <div class="slide">
+            <h2>The Smarter Way to Ride & Earn</h2>
+            <p style="font-size: 22px; color: #666; margin-bottom: 30px;">
+                Premium e-bikes at <span class="highlight">$120/month</span> - Half the true cost of scooter ownership
+            </p>
+            
+            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 20px; margin-bottom: 30px;">
+                <h3 style="color: white; margin-top: 0; text-align: center; font-size: 28px;">Why Riders Will Switch</h3>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; margin-top: 30px;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 20px; opacity: 0.9; margin-bottom: 10px;">Scooter Reality</div>
+                        <div style="font-size: 42px; font-weight: 700;">$234/mo</div>
+                        <div style="font-size: 14px; opacity: 0.8; margin-top: 10px;">
+                            Operating: $70<br>
+                            Depreciation: $50<br>
+                            Downtime losses: $70<br>
+                            Loan interest: $44
+                        </div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 20px; opacity: 0.9; margin-bottom: 10px;">Our E-bikes</div>
+                        <div style="font-size: 42px; font-weight: 700;">$120/mo</div>
+                        <div style="font-size: 14px; opacity: 0.8; margin-top: 10px;">
+                            All-inclusive<br>
+                            Zero depreciation<br>
+                            Zero downtime<br>
+                            Start earning today
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 25px; padding-top: 25px; border-top: 1px solid rgba(255,255,255,0.3);">
+                    <div style="font-size: 18px;">Can't find e-bikes to buy? They're $1,500+ when available.</div>
+                    <div style="font-size: 24px; font-weight: 600; margin-top: 10px;">We make them accessible at $120/month.</div>
+                    <div style="font-size: 16px; margin-top: 10px; opacity: 0.9;">4-hour replacement guarantee means zero downtime</div>
+                </div>
+            </div>
+            
+            <div class="solution-grid">
+                <div class="solution-card">
+                    <div class="solution-icon">💰</div>
+                    <div>
+                        <strong style="font-size: 20px;">$0 Upfront</strong><br>
+                        Start earning today vs $1,500+ purchase
+                    </div>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-icon">📅</div>
+                    <div>
+                        <strong style="font-size: 20px;">No Commitment</strong><br>
+                        Month-to-month flexibility for seasonal workers
+                    </div>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-icon">🔋</div>
+                    <div>
+                        <strong style="font-size: 20px;">Battery Swap Network</strong><br>
+                        Quick battery exchange keeps you earning
+                    </div>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-icon">🛡️</div>
+                    <div>
+                        <strong style="font-size: 20px;">Zero Risk</strong><br>
+                        No depreciation, repairs, or replacement costs
+                    </div>
+                </div>
+            </div>
+            <p style="text-align: center; font-size: 24px; margin-top: 40px; font-weight: 600;">
+                Perfect for <span class="highlight">full-time professionals</span> AND <span class="highlight">flexible workers</span>
+            </p>
+        </div>
+
+        <!-- Slide 6: Business Model -->
+        <div class="slide">
+            <h2>Proven Business Model</h2>
+            
+            <div style="background: #f8f9ff; padding: 30px; border-radius: 20px; margin-bottom: 30px;">
+                <h3 style="margin-top: 0; text-align: center;">Why Our Flexibility Wins</h3>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; margin-top: 25px;">
+                    <div style="text-align: center; padding: 20px; background: white; border-radius: 10px;">
+                        <div style="font-size: 36px; font-weight: 700; color: #667eea;">$0</div>
+                        <div style="font-size: 14px; color: #666;">Upfront Capital<br>(vs $1,500+ e-bike)</div>
+                    </div>
+                    <div style="text-align: center; padding: 20px; background: white; border-radius: 10px;">
+                        <div style="font-size: 36px; font-weight: 700; color: #667eea;">1 Month</div>
+                        <div style="font-size: 14px; color: #666;">Minimum Commitment<br>(captures seasonal demand)</div>
+                    </div>
+                    <div style="text-align: center; padding: 20px; background: white; border-radius: 10px;">
+                        <div style="font-size: 36px; font-weight: 700; color: #667eea;">$114/mo</div>
+                        <div style="font-size: 14px; color: #666;">Savings vs Scooter<br>(true all-in costs)</div>
+                    </div>
+                    <div style="text-align: center; padding: 20px; background: white; border-radius: 10px;">
+                        <div style="font-size: 36px; font-weight: 700; color: #667eea;">4 Hours</div>
+                        <div style="font-size: 14px; color: #666;">Replacement SLA<br>(zero downtime)</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="revenue-flow">
+                <div class="flow-item">
+                    <div style="font-size: 36px; font-weight: 700; color: #667eea;">$120</div>
+                    <div>Monthly Subscription</div>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-item">
+                    <div style="font-size: 36px; font-weight: 700; color: #667eea;">75%</div>
+                    <div>Fleet Utilization</div>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-item">
+                    <div style="font-size: 36px; font-weight: 700; color: #667eea;">68%</div>
+                    <div>EBITDA Margin</div>
+                </div>
+            </div>
+            
+            <div class="metrics-grid">
+                <div class="metric-box">
+                    <div class="metric-value">$45</div>
+                    <div class="metric-label">Customer Acquisition Cost</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-value">6-8%</div>
+                    <div class="metric-label">Monthly Churn (improving)</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-value">$1,050</div>
+                    <div class="metric-label">Per Bike Investment</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-value">30 months</div>
+                    <div class="metric-label">Bike Lifetime</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Traction & Validation -->
+        <div class="slide">
+        <!-- Slide 8: Growth Plan -->
+        <div class="slide">
+            <h2>Clear Path to Scale</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">Year 1</div>
+                    <div class="timeline-content">
+                        <strong>Foundation</strong><br>
+                        800 bikes | 600 subscribers | $601K revenue | Tbilisi market entry
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">Year 2</div>
+                    <div class="timeline-content">
+                        <strong>Growth</strong><br>
+                        1,400 bikes | 1,200 subscribers | $1.2M revenue | Cash flow positive
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">Year 3</div>
+                    <div class="timeline-content">
+                        <strong>Expansion</strong><br>
+                        2,200 bikes | 2,600 subscribers | $2.7M revenue | Launch 2nd country
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">Year 5</div>
+                    <div class="timeline-content">
+                        <strong>Market Leader</strong><br>
+                        6,700 bikes | 6,000 subscribers | $6.4M revenue | $4.4M EBITDA
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px; padding: 30px; background: linear-gradient(90deg, #f5f7fa 0%, #c3cfe2 100%); border-radius: 15px;">
+                <p style="font-size: 24px; font-weight: 600;">
+                    Exit Potential: <span class="highlight">$22-31M</span> at 5-7x EBITDA multiple
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide 9: Technology -->
+        <div class="slide">
+            <h2>Technology Roadmap</h2>
+            <p style="font-size: 20px; color: #666; margin-bottom: 30px;">
+                Building the operating system for micro-mobility operations
+            </p>
+            
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 40px 0;">
+                <div style="padding: 25px; background: #f8f9ff; border-radius: 15px; text-align: center;">
+                    <div style="font-size: 18px; font-weight: 600; color: #667eea; margin-bottom: 10px;">Phase 1</div>
+                    <strong>White-Label Launch</strong>
+                    <p style="margin-top: 10px; font-size: 14px;">Fast market entry with proven SaaS platform</p>
+                </div>
+                <div style="padding: 25px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 15px; text-align: center;">
+                    <div style="font-size: 18px; font-weight: 600; margin-bottom: 10px;">Phase 2</div>
+                    <strong>Custom Platform</strong>
+                    <p style="margin-top: 10px; font-size: 14px;">Rider app + maintenance management system</p>
+                </div>
+                <div style="padding: 25px; background: #f8f9ff; border-radius: 15px; text-align: center;">
+                    <div style="font-size: 18px; font-weight: 600; color: #667eea; margin-bottom: 10px;">Phase 3</div>
+                    <strong>Platform Scaling</strong>
+                    <p style="margin-top: 10px; font-size: 14px;">Multi-city operations, API integrations</p>
+                </div>
+            </div>
+            
+            <div class="solution-grid" style="margin-top: 40px;">
+                <div style="padding: 25px; background: white; border: 2px solid #667eea; border-radius: 15px;">
+                    <h3 style="margin-top: 0; font-size: 20px;">Rider Features</h3>
+                    <p>• Real-time bike diagnostics<br>
+                    • One-tap maintenance request<br>
+                    • Earnings optimizer<br>
+                    • Community features</p>
+                </div>
+                <div style="padding: 25px; background: white; border: 2px solid #764ba2; border-radius: 15px;">
+                    <h3 style="margin-top: 0; font-size: 20px; color: #764ba2;">Operations Features</h3>
+                    <p>• Fleet tracking & analytics<br>
+                    • Predictive maintenance<br>
+                    • Dynamic routing for mechanics<br>
+                    • Inventory management</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Financials -->
+            
+            <div style="background: linear-gradient(135deg, #f8f9ff 0%, #e8ecff 100%); padding: 40px; border-radius: 20px; margin-bottom: 30px;">
+                <h3 style="margin-top: 0; text-align: center;">Path to Profitability</h3>
+                <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; text-align: center; margin-top: 30px;">
+                    <div>
+                        <div style="font-size: 14px; color: #666;">Year 1</div>
+                        <div style="font-size: 24px; font-weight: 700; color: #667eea;">$601K</div>
+                        <div style="font-size: 12px; color: #999;">Revenue</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 14px; color: #666;">Year 2</div>
+                        <div style="font-size: 24px; font-weight: 700; color: #667eea;">$1.2M</div>
+                        <div style="font-size: 12px; color: #999;">Revenue</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 14px; color: #666;">Year 3</div>
+                        <div style="font-size: 24px; font-weight: 700; color: #667eea;">$2.7M</div>
+                        <div style="font-size: 12px; color: #999;">Revenue</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 14px; color: #666;">Year 4</div>
+                        <div style="font-size: 24px; font-weight: 700; color: #667eea;">$4.4M</div>
+                        <div style="font-size: 12px; color: #999;">Revenue</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 14px; color: #666;">Year 5</div>
+                        <div style="font-size: 24px; font-weight: 700; color: #667eea;">$6.4M</div>
+                        <div style="font-size: 12px; color: #999;">Revenue</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="metrics-grid">
+                <div class="metric-box">
+                    <div class="metric-value">Y2</div>
+                    <div class="metric-label">Cash Flow Positive</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-value">$4.4M</div>
+                    <div class="metric-label">Y5 EBITDA</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-value">68%</div>
+                    <div class="metric-label">EBITDA Margin at Scale</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-value">$3M</div>
+                    <div class="metric-label">Annual FCF at Steady State</div>
+                </div>
+            </div>
+            
+            <p style="text-align: center; font-size: 20px; margin-top: 40px; padding: 25px; background: white; border: 2px solid #667eea; border-radius: 15px;">
+                <strong>Capital Efficiency:</strong> Each $1 invested returns <span class="highlight">$4.20</span> in steady-state EBITDA
+            </p>
+        </div>
+
+        <!-- Slide 11: Investment Terms -->
+        <div class="slide">
+            <h2>Investment Opportunity</h2>
+            
+            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 40px; border-radius: 20px; margin-bottom: 40px;">
+                <h3 style="color: white; margin-top: 0; font-size: 36px; text-align: center;">$850K Seed Round</h3>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-top: 30px;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 28px; font-weight: 700;">$3M</div>
+                        <div style="opacity: 0.9;">Pre-money Valuation</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 28px; font-weight: 700;">22%</div>
+                        <div style="opacity: 0.9;">Equity Offered</div>
+                    </div>
+                </div>
+            </div>
+            
+            <h3>Use of Funds</h3>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-bottom: 40px;">
+                <div style="padding: 20px; background: #f8f9ff; border-radius: 10px;">
+                    <strong style="color: #667eea;">Fleet Investment (70%)</strong>
+                    <p style="margin-top: 10px;">800 e-bikes for Tbilisi launch</p>
+                </div>
+                <div style="padding: 20px; background: #f8f9ff; border-radius: 10px;">
+                    <strong style="color: #667eea;">Operations (15%)</strong>
+                    <p style="margin-top: 10px;">Hub setup, tools, inventory</p>
+                </div>
+                <div style="padding: 20px; background: #f8f9ff; border-radius: 10px;">
+                    <strong style="color: #667eea;">Technology (10%)</strong>
+                    <p style="margin-top: 10px;">Platform development & deployment</p>
+                </div>
+                <div style="padding: 20px; background: #f8f9ff; border-radius: 10px;">
+                    <strong style="color: #667eea;">Working Capital (5%)</strong>
+                    <p style="margin-top: 10px;">CAC and initial operations</p>
+                </div>
+            </div>
+            
+            <h3>Next Funding</h3>
+            <p style="font-size: 18px; line-height: 1.8;">
+                <strong>Series A:</strong> $850K in Year 3 for 2nd country expansion<br>
+                Exit strategy: Strategic acquisition or PE buyout at 5-7x EBITDA
+            </p>
+        </div>
+
+        <!-- Slide 12: Why Now -->
+        <div class="slide">
+            <h2>Why Now?</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin: 40px 0;">
+                <div style="padding: 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 15px;">
+                    <h3 style="color: white; margin-top: 0;">Market Timing</h3>
+                    <p style="line-height: 1.8;">
+                        • Delivery volumes up 300% post-COVID<br>
+                        • Existing rider economics crushing rider margins<br>
+                        • City becoming more bike friendly and difficult for cars<br>
+                        • Untapped casual worker demand
+                    </p>
+                </div>
+                <div style="padding: 30px; background: white; border: 2px solid #667eea; border-radius: 15px;">
+                    <h3 style="margin-top: 0;">Financial Reality</h3>
+                    <p style="line-height: 1.8;">
+                        • Scooter prices up 30% in 2 years<br>
+                        • Loan rates at 25-30% APR<br>
+                        • Riders losing $1,000+ to depreciation<br>
+                        • Growing awareness of true costs
+                    </p>
+                </div>
+            </div>
+            
+            <div style="background: #f8f9ff; padding: 40px; border-radius: 20px; text-align: center;">
+                <h3 style="margin-top: 0; font-size: 28px;">The $234/Month Secret</h3>
+                <p style="font-size: 20px; line-height: 1.8;">
+                    <strong>Riders don't realize scooters cost $234/month all-in</strong><br>
+                    First mover to expose this truth wins the market<br>
+                    Our $120/month suddenly becomes the bargain option
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide 13: Competitive Advantage -->
+        <div class="slide">
+            <h2>Our Competitive Moat</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; margin: 40px 0;">
+                <div style="text-align: center; padding: 25px; background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                    <div style="font-size: 48px; margin-bottom: 15px;">🤝</div>
+                    <strong style="font-size: 18px;">Platform Partnerships</strong>
+                    <p style="margin-top: 10px; font-size: 14px;">Will build exclusive agreements with Wolt and Glovo reducing CAC by 55%</p>
+                </div>
+                <div style="text-align: center; padding: 25px; background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                    <div style="font-size: 48px; margin-bottom: 15px;">📅</div>
+                    <strong style="font-size: 18px;">Flexible Terms</strong>
+                    <p style="margin-top: 10px; font-size: 14px;">Month-to-month unlocks 8,000+ part-time riders competitors ignore</p>
+                </div>
+                <div style="text-align: center; padding: 25px; background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                    <div style="font-size: 48px; margin-bottom: 15px;">⚡</div>
+                    <strong style="font-size: 18px;">4-Hour SLA</strong>
+                    <p style="margin-top: 10px; font-size: 14px;">Industry-best service level with mobile mechanics network</p>
+                </div>
+            </div>
+            
+            <div style="background: linear-gradient(135deg, #f8f9ff 0%, #e8ecff 100%); padding: 30px; border-radius: 15px;">
+                <h3 style="margin-top: 0; text-align: center;">Network Effects</h3>
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 25px; text-align: center;">
+                    <div>
+                        <strong style="color: #667eea;">More Riders</strong>
+                        <p style="font-size: 14px; margin-top: 5px;">Lower unit costs</p>
+                    </div>
+                    <div style="font-size: 24px; color: #667eea;">→</div>
+                    <div>
+                        <strong style="color: #667eea;">Better Economics</strong>
+                        <p style="font-size: 14px; margin-top: 5px;">Higher margins</p>
+                    </div>
+                    <div style="font-size: 24px; color: #667eea;">→</div>
+                    <div>
+                        <strong style="color: #667eea;">More Investment</strong>
+                        <p style="font-size: 14px; margin-top: 5px;">Better service</p>
+                    </div>
+                    <div style="font-size: 24px; color: #667eea;">→</div>
+                    <div>
+                        <strong style="color: #667eea;">Market Leader</strong>
+                        <p style="font-size: 14px; margin-top: 5px;">Defensible position</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 14: Risk Mitigation -->
+        <div class="slide">
+            <h2>Risk Management</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin: 40px 0;">
+                <div>
+                    <h3 style="color: #667eea;">Risk</h3>
+                    <div style="padding: 20px; background: #f8f9ff; border-radius: 10px; margin-bottom: 15px;">
+                        <strong>High Initial Churn</strong>
+                        <p style="margin-top: 10px; font-size: 14px;">Riders may leave service early</p>
+                    </div>
+                    <div style="padding: 20px; background: #f8f9ff; border-radius: 10px; margin-bottom: 15px;">
+                        <strong>Platform Dependency</strong>
+                        <p style="margin-top: 10px; font-size: 14px;">Reliance on delivery apps</p>
+                    </div>
+                    <div style="padding: 20px; background: #f8f9ff; border-radius: 10px;">
+                        <strong>Fleet Damage/Theft</strong>
+                        <p style="margin-top: 10px; font-size: 14px;">Asset loss risk</p>
+                    </div>
+                </div>
+                <div>
+                    <h3 style="color: #764ba2;">Mitigation</h3>
+                    <div style="padding: 20px; background: white; border: 2px solid #764ba2; border-radius: 10px; margin-bottom: 15px;">
+                        <strong style="color: #764ba2;">Community & Retention</strong>
+                        <p style="margin-top: 10px; font-size: 14px;">Referral programs, loyalty rewards, rider support groups</p>
+                    </div>
+                    <div style="padding: 20px; background: white; border: 2px solid #764ba2; border-radius: 10px; margin-bottom: 15px;">
+                        <strong style="color: #764ba2;">Multi-Channel Strategy</strong>
+                        <p style="margin-top: 10px; font-size: 14px;">50% direct acquisition, multiple platform partners</p>
+                    </div>
+                    <div style="padding: 20px; background: white; border: 2px solid #764ba2; border-radius: 10px;">
+                        <strong style="color: #764ba2;">GPS + Insurance</strong>
+                        <p style="margin-top: 10px; font-size: 14px;">Real-time tracking, immobilizers, comprehensive coverage</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 15: Call to Action -->
+        <div class="slide cta-slide">
+            <h2 style="color: white; font-size: 56px;">Join Us in Transforming Delivery</h2>
+            
+            <div class="cta-grid">
+                <div class="cta-item">
+                    <div class="cta-value">$270M</div>
+                    <div>Regional TAM</div>
+                </div>
+                <div class="cta-item">
+                    <div class="cta-value">68%</div>
+                    <div>EBITDA Margins</div>
+                </div>
+                <div class="cta-item">
+                    <div class="cta-value">5-7x</div>
+                    <div>Exit Multiple</div>
+                </div>
+                <div class="cta-item">
+                    <div class="cta-value">Y2</div>
+                    <div>Cash Flow Positive</div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 50px;">
+                <p style="font-size: 24px; margin-bottom: 30px;">
+                    Be part of the sustainable mobility revolution<br>
+                    empowering the heroes of the gig economy
+                </p>
+                <div style="display: inline-block; padding: 20px 50px; background: white; color: #667eea; border-radius: 50px; font-size: 28px; font-weight: 700;">
+                    Let's Build Together
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 50px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.2);">
+                <p style="font-size: 18px; opacity: 0.9;">
+                    📧 invest@rideflow.io | 📱 +995 555 123456 | 🌐 www.rideflow.io
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scroll animation
+        document.querySelectorAll('.slide').forEach((slide, index) => {
+            slide.style.animationDelay = `${index * 0.1}s`;
+        });
+
+        // Progress bar
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = (scrollTop / docHeight) * 100;
+            document.getElementById('progress').style.width = progress + '%';
+        });
+
+        // Intersection observer for slide animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('.slide').forEach(slide => {
+            slide.style.opacity = '0';
+            slide.style.transform = 'translateY(30px)';
+            slide.style.transition = 'all 0.6s ease-out';
+            observer.observe(slide);
+        });
+
+        // Add some interactive hover effects
+        document.querySelectorAll('.stat-card, .problem-card, .solution-card, .team-member').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = this.style.transform + ' scale(1.05)';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = this.style.transform.replace(' scale(1.05)', '');
+            });
+        });
+    </script>
+</body>
+</html>
